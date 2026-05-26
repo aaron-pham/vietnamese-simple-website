@@ -860,7 +860,7 @@ function triggerSpeechSynthesisFallback(text, isRetry = false) {
   }
   utterance.rate = 0.85; // Slow down a bit for learner friendliness
 
-  // Try to find a native Vietnamese voice
+  // Try to find a Vietnamese voice
   const voices = window.speechSynthesis.getVoices();
   const viVoice = voices.find(v => v.lang.toLowerCase().includes('vi') || v.lang.toLowerCase().includes('vn'));
   if (viVoice && !isRetry) {
