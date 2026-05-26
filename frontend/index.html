@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
   <title>Vietnamese Travel Phrases - Speak Like a Native</title>
-  <meta name="description" content="Learn essential Vietnamese travel phrases with audio pronunciation. Click any card to hear the correct pronunciation, search, filter, and practice on-the-go.">
-  
+  <meta name="description"
+    content="Learn essential Vietnamese travel phrases with audio pronunciation. Click any card to hear the correct pronunciation, search, filter, and practice on-the-go.">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="glow-bg"></div>
-  
+
   <div class="app-container">
     <header class="app-header">
       <div class="header-badge" id="header-badge">
         <span class="flag-icon">🇻🇳</span> Học Tiếng Việt
       </div>
       <h1 id="main-title">Vietnamese Travel Phrases</h1>
-      <p class="subtitle" id="main-subtitle">Essential phrases with high-quality audio. Click any phrase card to hear the native pronunciation.</p>
+      <p class="subtitle" id="main-subtitle">Essential phrases with high-quality audio. Click any phrase card to hear
+        the native pronunciation.</p>
     </header>
 
     <main class="app-main">
@@ -34,13 +41,8 @@
       <section class="controls-section" aria-label="Search and Filter Controls">
         <div class="search-bar-wrapper">
           <i data-lucide="search" class="search-icon"></i>
-          <input 
-            type="text" 
-            id="phrase-search" 
-            placeholder="Search by English, Vietnamese, or spelling..."
-            aria-label="Search phrases"
-            autocomplete="off"
-          >
+          <input type="text" id="phrase-search" placeholder="Search by English, Vietnamese, or spelling..."
+            aria-label="Search phrases" autocomplete="off">
           <button id="clear-search-btn" class="clear-search-btn" aria-label="Clear search" style="display: none;">
             <i data-lucide="x"></i>
           </button>
@@ -95,4 +97,5 @@
   <!-- Main Application Logic -->
   <script src="app.js"></script>
 </body>
+
 </html>
