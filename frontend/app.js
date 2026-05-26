@@ -541,6 +541,7 @@ let audioInstance = null;
 let isPlayingSequence = false;
 let sequenceQueue = [];
 let sequenceIndex = 0;
+let safetyTimeout = null;
 
 // ==========================================================================
 // DOM Element Cache
@@ -752,22 +753,38 @@ function handlePhraseClick(phraseId) {
   }
 }
 
-function playPhraseAudio(phraseId) {
-  // Stop existing playback immediately
-  stopAudioInternal();
+function playPhraseAudio(phraseId, useAlternateGoogle = false) {
+  // If starting a fresh playback, stop existing playback and set safety timeout
+  if (!useAlternateGoogle) {
+    stopAudioInternal();
+
+    const phrase = PHRASES.find(p => p.id === phraseId);
+    if (!phrase) return;
+
+    playingPhraseId = phraseId;
+    updateVisualPlaybackState(phrase, true);
+
+    // Set a failsafe safety timeout (e.g. 6 seconds) to prevent visual lockups if browser speech events fail
+    safetyTimeout = setTimeout(() => {
+      console.warn("Failsafe safety timeout triggered. Force-stopping audio visual state.");
+      stopAudio();
+    }, 6000);
+  }
 
   const phrase = PHRASES.find(p => p.id === phraseId);
   if (!phrase) return;
 
-  playingPhraseId = phraseId;
-  updateVisualPlaybackState(phrase, true);
-
   // Replace blanks (___) with a pause-inducing comma for natural speech playback
   const speakText = phrase.vietnamese.replace(/___/g, ',');
 
-  // Google Translate TTS URL
-  // We use client=tw-ob which is highly reliable and does not expire/require tokens
-  const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=${encodeURIComponent(speakText)}`;
+  // Select client endpoint based on attempt
+  const clientParam = useAlternateGoogle ? 'gtx' : 'tw-ob';
+  const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=${clientParam}&q=${encodeURIComponent(speakText)}`;
+
+  // Clear previous audio instance if switching to alternate
+  if (audioInstance) {
+    audioInstance.pause();
+  }
 
   audioInstance = new Audio(ttsUrl);
 
@@ -775,9 +792,14 @@ function playPhraseAudio(phraseId) {
   audioInstance.playbackRate = 0.92;
 
   let fallbackTimeout = setTimeout(() => {
-    console.warn("Google TTS load timeout. Falling back to SpeechSynthesis.");
-    triggerSpeechSynthesisFallback(speakText);
-  }, 3500);
+    if (!useAlternateGoogle) {
+      console.warn("Google TTS tw-ob timeout. Trying alternate gtx endpoint...");
+      playPhraseAudio(phraseId, true);
+    } else {
+      console.warn("Alternate Google TTS timeout. Falling back to SpeechSynthesis.");
+      triggerSpeechSynthesisFallback(speakText);
+    }
+  }, 2500);
 
   audioInstance.addEventListener("canplaythrough", () => {
     clearTimeout(fallbackTimeout);
@@ -789,19 +811,29 @@ function playPhraseAudio(phraseId) {
 
   audioInstance.addEventListener("error", (e) => {
     clearTimeout(fallbackTimeout);
-    console.error("Google TTS error. Invoking SpeechSynthesis fallback.", e);
-    triggerSpeechSynthesisFallback(speakText);
+    if (!useAlternateGoogle) {
+      console.warn("Google TTS tw-ob failed. Trying alternate gtx endpoint...", e);
+      playPhraseAudio(phraseId, true);
+    } else {
+      console.error("Alternate Google TTS failed. Invoking SpeechSynthesis fallback.", e);
+      triggerSpeechSynthesisFallback(speakText);
+    }
   });
 
   // Play audio
   audioInstance.play().catch(err => {
     clearTimeout(fallbackTimeout);
-    console.warn("Play error (likely auto-play restriction or CORS block). Falling back to SpeechSynthesis.", err);
-    triggerSpeechSynthesisFallback(speakText);
+    if (!useAlternateGoogle) {
+      console.warn("Google TTS tw-ob play catch. Trying alternate gtx endpoint...", err);
+      playPhraseAudio(phraseId, true);
+    } else {
+      console.warn("Alternate Google TTS play catch. Falling back to SpeechSynthesis.", err);
+      triggerSpeechSynthesisFallback(speakText);
+    }
   });
 }
 
-function triggerSpeechSynthesisFallback(text) {
+function triggerSpeechSynthesisFallback(text, isRetry = false) {
   stopAudioInternal(); // Ensure everything is clear
 
   // Check if browser supports Web Speech API
@@ -815,13 +847,15 @@ function triggerSpeechSynthesisFallback(text) {
   window.speechSynthesis.cancel();
 
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'vi-VN';
+  if (!isRetry) {
+    utterance.lang = 'vi-VN';
+  }
   utterance.rate = 0.85; // Slow down a bit for learner friendliness
 
   // Try to find a native Vietnamese voice
   const voices = window.speechSynthesis.getVoices();
   const viVoice = voices.find(v => v.lang.toLowerCase().includes('vi') || v.lang.toLowerCase().includes('vn'));
-  if (viVoice) {
+  if (viVoice && !isRetry) {
     utterance.voice = viVoice;
   }
 
@@ -831,13 +865,25 @@ function triggerSpeechSynthesisFallback(text) {
 
   utterance.onerror = (e) => {
     console.error("SpeechSynthesis error:", e);
-    handleAudioFinished();
+    // If the Vietnamese voice pack isn't installed locally, retry without the language restriction
+    if (!isRetry && (e.error === 'language-unavailable' || e.error === 'voice-unavailable')) {
+      console.warn("Vietnamese voice unavailable. Retrying with default system voice...");
+      triggerSpeechSynthesisFallback(text, true);
+    } else {
+      handleAudioFinished();
+    }
   };
 
   window.speechSynthesis.speak(utterance);
 }
 
 function stopAudioInternal() {
+  // Clear safety timeout if active
+  if (safetyTimeout) {
+    clearTimeout(safetyTimeout);
+    safetyTimeout = null;
+  }
+
   // Clear HTML5 Audio instance
   if (audioInstance) {
     audioInstance.pause();
