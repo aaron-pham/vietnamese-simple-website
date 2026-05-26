@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietnamese Travel Phrases - Speak Like a Native</title>
+  <meta name="description" content="Learn essential Vietnamese travel phrases with audio pronunciation. Click any card to hear the correct pronunciation, search, filter, and practice on-the-go.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="glow-bg"></div>
+  
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-badge" id="header-badge">
+        <span class="flag-icon">🇻🇳</span> Học Tiếng Việt
+      </div>
+      <h1 id="main-title">Vietnamese Travel Phrases</h1>
+      <p class="subtitle" id="main-subtitle">Essential phrases with high-quality audio. Click any phrase card to hear the native pronunciation.</p>
+    </header>
+
+    <main class="app-main">
+      <!-- Search & Filters Container -->
+      <section class="controls-section" aria-label="Search and Filter Controls">
+        <div class="search-bar-wrapper">
+          <i data-lucide="search" class="search-icon"></i>
+          <input 
+            type="text" 
+            id="phrase-search" 
+            placeholder="Search by English, Vietnamese, or spelling..."
+            aria-label="Search phrases"
+            autocomplete="off"
+          >
+          <button id="clear-search-btn" class="clear-search-btn" aria-label="Clear search" style="display: none;">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <nav class="categories-nav" id="categories-nav" aria-label="Phrase Categories">
+          <!-- Dynamically populated categories -->
+        </nav>
+      </section>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar" id="stats-bar">
+        <span id="results-count">Showing all phrases</span>
+        <button id="play-all-btn" class="secondary-btn" aria-label="Play visible phrases in order">
+          <i data-lucide="play-circle"></i> Play All Sequence
+        </button>
+      </div>
+
+      <!-- Phrases Grid -->
+      <section class="phrases-grid" id="phrases-grid" aria-label="List of Travel Phrases">
+        <!-- Dynamically populated phrase cards -->
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Made for travelers exploring Vietnam. Audio powered by Google Translate TTS with native browser fallback.</p>
+      <div class="footer-links">
+        <span>💡 Hint: Press Spacebar to pause/stop playback, or use search to find specific words.</span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Audio Player Elements -->
+  <div class="audio-hud-container" id="audio-hud" style="display: none;">
+    <div class="audio-hud-content">
+      <div class="hud-phrase-details">
+        <span class="hud-label">Now Playing</span>
+        <span class="hud-vietnamese" id="hud-vi-text">Xin chào</span>
+        <span class="hud-english" id="hud-en-text">Hello</span>
+      </div>
+      <div class="hud-controls">
+        <button id="hud-replay-btn" class="hud-btn" aria-label="Replay audio">
+          <i data-lucide="rotate-ccw"></i>
+        </button>
+        <button id="hud-stop-btn" class="hud-btn stop-btn" aria-label="Stop audio">
+          <i data-lucide="square"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
