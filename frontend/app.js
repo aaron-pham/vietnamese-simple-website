@@ -758,6 +758,14 @@ function playPhraseAudio(phraseId, useAlternateGoogle = false) {
   if (!useAlternateGoogle) {
     stopAudioInternal();
 
+    // Clear visual state of the previously playing card, if any
+    if (playingPhraseId && playingPhraseId !== phraseId) {
+      const prevPhrase = PHRASES.find(p => p.id === playingPhraseId);
+      if (prevPhrase) {
+        updateVisualPlaybackState(prevPhrase, false);
+      }
+    }
+
     const phrase = PHRASES.find(p => p.id === phraseId);
     if (!phrase) return;
 
