@@ -412,6 +412,10 @@ body {
   color: #fb923c;
   background: rgba(251, 146, 60, 0.1);
 }
+.phrase-card[data-category="allergies"] .category-tag {
+  color: #f43f5e;
+  background: rgba(244, 63, 94, 0.1);
+}
 .phrase-card[data-category="emergency"] .category-tag {
   color: var(--accent-crimson);
   background: var(--accent-crimson-glow);

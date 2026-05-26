@@ -1,6 +1,15 @@
-// ==========================================================================
-// Vietnamese Travel Phrases Data
-// ==========================================================================
+const CATEGORIES = [
+  { id: "all", label: "All Phrases", icon: "grid" },
+  { id: "greetings", label: "Greetings", icon: "smile" },
+  { id: "essentials", label: "Essentials", icon: "compass" },
+  { id: "dining", label: "Food & Dining", icon: "utensils" },
+  { id: "allergies", label: "Allergies", icon: "shield-alert" },
+  { id: "directions", label: "Directions", icon: "map" },
+  { id: "shopping", label: "Shopping", icon: "shopping-bag" },
+  { id: "numbers", label: "Numbers & Money", icon: "banknote" },
+  { id: "emergency", label: "Emergency", icon: "alert-triangle" }
+];
+
 const PHRASES = [
   // Greetings & Basics
   {
@@ -109,6 +118,96 @@ const PHRASES = [
     category: "dining",
     icon: "leaf"
   },
+  {
+    id: "dining-icedcoffee",
+    english: "Iced milk coffee (Traditional)",
+    vietnamese: "Cà phê sữa đá",
+    phonetic: "ca feh sua dah",
+    category: "dining",
+    icon: "coffee"
+  },
+  {
+    id: "dining-blackcoffee",
+    english: "Iced black coffee",
+    vietnamese: "Cà phê đá",
+    phonetic: "ca feh dah",
+    category: "dining",
+    icon: "coffee"
+  },
+  {
+    id: "dining-lesssugar",
+    english: "Less sweet / Less condensed milk",
+    vietnamese: "Ít sữa / Ít đường",
+    phonetic: "eet sua / eet du-uhng",
+    category: "dining",
+    icon: "sliders"
+  },
+  {
+    id: "dining-nocilantro",
+    english: "No coriander / No cilantro",
+    vietnamese: "Không ăn ngò",
+    phonetic: "khom ahn ngoh",
+    category: "dining",
+    icon: "scissors"
+  },
+  {
+    id: "dining-nocucumber",
+    english: "No cucumber",
+    vietnamese: "Không lấy dưa leo",
+    phonetic: "khom lay zua leh-oh",
+    category: "dining",
+    icon: "ban"
+  },
+  {
+    id: "dining-sauceside",
+    english: "Sauce on the side",
+    vietnamese: "Để nước sốt riêng",
+    phonetic: "deh nawk sot zee-uhng",
+    category: "dining",
+    icon: "container"
+  },
+
+  // Allergies & Food Safety
+  {
+    id: "allergy-question-blank",
+    english: "Is there [blank] in this?",
+    vietnamese: "Cái này có ___ không?",
+    phonetic: "kai nay co ___ khom",
+    category: "allergies",
+    icon: "help-circle"
+  },
+  {
+    id: "allergy-allergic-blank",
+    english: "I am allergic to [blank]",
+    vietnamese: "Tôi bị dị ứng ___",
+    phonetic: "toy bee zee oong ___",
+    category: "allergies",
+    icon: "shield-alert"
+  },
+  {
+    id: "allergy-word-fish",
+    english: "Fish",
+    vietnamese: "Cá",
+    phonetic: "ca",
+    category: "allergies",
+    icon: "fish"
+  },
+  {
+    id: "allergy-word-shrimp",
+    english: "Shrimp",
+    vietnamese: "Tôm",
+    phonetic: "tom",
+    category: "allergies",
+    icon: "shell"
+  },
+  {
+    id: "allergy-word-cilantro",
+    english: "Cilantro / Coriander",
+    vietnamese: "Rau ngò",
+    phonetic: "zow ngoh",
+    category: "allergies",
+    icon: "leaf"
+  },
 
   // Directions & Transport
   {
@@ -151,6 +250,30 @@ const PHRASES = [
     category: "directions",
     icon: "plane"
   },
+  {
+    id: "dir-coming",
+    english: "I am coming / Wait a minute",
+    vietnamese: "Tôi đang đến, chờ tí",
+    phonetic: "toy dahng den, chuh tee",
+    category: "directions",
+    icon: "clock"
+  },
+  {
+    id: "dir-whereareyou",
+    english: "Where are you?",
+    vietnamese: "Bạn ở đâu?",
+    phonetic: "bahn uh daw",
+    category: "directions",
+    icon: "help-circle"
+  },
+  {
+    id: "dir-crossstreet",
+    english: "Across the street",
+    vietnamese: "Đối diện đường",
+    phonetic: "doy zee-en du-uhng",
+    category: "directions",
+    icon: "shuffle"
+  },
 
   // Shopping & Bargaining
   {
@@ -176,6 +299,22 @@ const PHRASES = [
     phonetic: "zahm zah du-uhk khom",
     category: "shopping",
     icon: "percent"
+  },
+  {
+    id: "shop-looking",
+    english: "Just looking, thank you",
+    vietnamese: "Tôi xem thôi, cảm ơn",
+    phonetic: "toy sem thoy, gahm uhn",
+    category: "shopping",
+    icon: "eye"
+  },
+  {
+    id: "shop-opening",
+    english: "Open the market price! (Good luck)",
+    vietnamese: "Mở hàng đi!",
+    phonetic: "muh hahng dee",
+    category: "shopping",
+    icon: "sparkles"
   },
 
   // Emergency
@@ -392,18 +531,6 @@ const PHRASES = [
     icon: "banknote"
   }
 ];
-
-const CATEGORIES = [
-  { id: "all", label: "All Phrases", icon: "grid" },
-  { id: "greetings", label: "Greetings", icon: "smile" },
-  { id: "essentials", label: "Essentials", icon: "compass" },
-  { id: "dining", label: "Food & Dining", icon: "utensils" },
-  { id: "directions", label: "Directions", icon: "map" },
-  { id: "shopping", label: "Shopping", icon: "shopping-bag" },
-  { id: "numbers", label: "Numbers & Money", icon: "banknote" },
-  { id: "emergency", label: "Emergency", icon: "alert-triangle" }
-];
-
 // ==========================================================================
 // Application State
 // ==========================================================================
@@ -437,7 +564,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategories();
   renderPhrases();
   setupEventListeners();
-  
+
   // Initialize Lucide icons
   lucide.createIcons();
 });
@@ -462,7 +589,7 @@ function renderCategories() {
 function renderPhrases() {
   const filteredPhrases = PHRASES.filter(phrase => {
     const matchesCategory = currentFilter === "all" || phrase.category === currentFilter;
-    const matchesSearch = 
+    const matchesSearch =
       phrase.english.toLowerCase().includes(searchQuery.toLowerCase()) ||
       phrase.vietnamese.toLowerCase().includes(searchQuery.toLowerCase()) ||
       phrase.phonetic.toLowerCase().includes(searchQuery.toLowerCase());
@@ -529,11 +656,11 @@ function setupEventListeners() {
   categoriesNav.addEventListener("click", (e) => {
     const btn = e.target.closest(".category-tab");
     if (!btn) return;
-    
+
     currentFilter = btn.dataset.category;
     document.querySelectorAll(".category-tab").forEach(tab => tab.classList.remove("active"));
     btn.classList.add("active");
-    
+
     // Stop playing when switching categories to avoid confusion
     stopAudio();
     renderPhrases();
@@ -559,7 +686,7 @@ function setupEventListeners() {
   phrasesGrid.addEventListener("click", (e) => {
     const card = e.target.closest(".phrase-card");
     if (!card) return;
-    
+
     const phraseId = card.dataset.id;
     handlePhraseClick(phraseId);
   });
@@ -635,18 +762,21 @@ function playPhraseAudio(phraseId) {
   playingPhraseId = phraseId;
   updateVisualPlaybackState(phrase, true);
 
+  // Replace blanks (___) with a pause-inducing comma for natural speech playback
+  const speakText = phrase.vietnamese.replace(/___/g, ',');
+
   // Google Translate TTS URL
   // We use client=tw-ob which is highly reliable and does not expire/require tokens
-  const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=${encodeURIComponent(phrase.vietnamese)}`;
+  const ttsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=vi&client=tw-ob&q=${encodeURIComponent(speakText)}`;
 
   audioInstance = new Audio(ttsUrl);
-  
+
   // Set playback rate to slightly slower (e.g. 0.9) to make it easier for language learners
   audioInstance.playbackRate = 0.92;
 
   let fallbackTimeout = setTimeout(() => {
     console.warn("Google TTS load timeout. Falling back to SpeechSynthesis.");
-    triggerSpeechSynthesisFallback(phrase.vietnamese);
+    triggerSpeechSynthesisFallback(speakText);
   }, 3500);
 
   audioInstance.addEventListener("canplaythrough", () => {
@@ -660,14 +790,14 @@ function playPhraseAudio(phraseId) {
   audioInstance.addEventListener("error", (e) => {
     clearTimeout(fallbackTimeout);
     console.error("Google TTS error. Invoking SpeechSynthesis fallback.", e);
-    triggerSpeechSynthesisFallback(phrase.vietnamese);
+    triggerSpeechSynthesisFallback(speakText);
   });
 
   // Play audio
   audioInstance.play().catch(err => {
     clearTimeout(fallbackTimeout);
     console.warn("Play error (likely auto-play restriction or CORS block). Falling back to SpeechSynthesis.", err);
-    triggerSpeechSynthesisFallback(phrase.vietnamese);
+    triggerSpeechSynthesisFallback(speakText);
   });
 }
 
@@ -722,7 +852,7 @@ function stopAudioInternal() {
 
 function stopAudio() {
   stopAudioInternal();
-  
+
   if (isPlayingSequence) {
     isPlayingSequence = false;
     playAllBtn.classList.remove("playing-sequence");
@@ -732,7 +862,7 @@ function stopAudio() {
 
   const prevPlayingId = playingPhraseId;
   playingPhraseId = null;
-  
+
   if (prevPlayingId) {
     const phrase = PHRASES.find(p => p.id === prevPlayingId);
     if (phrase) {
