@@ -6,7 +6,8 @@ const CATEGORIES = [
   { id: "allergies", label: "Allergies", icon: "shield-alert" },
   { id: "directions", label: "Directions", icon: "map" },
   { id: "shopping", label: "Shopping", icon: "shopping-bag" },
-  { id: "numbers", label: "Numbers & Money", icon: "banknote" },
+  { id: "numbers", label: "Numbers", icon: "hash" },
+  { id: "money", label: "Money & Payments", icon: "banknote" },
   { id: "emergency", label: "Emergency", icon: "alert-triangle" }
 ];
 
@@ -440,6 +441,7 @@ const PHRASES = [
     vietnamese: "Một",
     phonetic: "moht",
     category: "numbers",
+    subgroup: "basic",
     icon: "hash"
   },
   {
@@ -448,6 +450,7 @@ const PHRASES = [
     vietnamese: "Hai",
     phonetic: "high",
     category: "numbers",
+    subgroup: "basic",
     icon: "hash"
   },
   {
@@ -456,6 +459,7 @@ const PHRASES = [
     vietnamese: "Ba",
     phonetic: "bah",
     category: "numbers",
+    subgroup: "basic",
     icon: "hash"
   },
   {
@@ -464,6 +468,7 @@ const PHRASES = [
     vietnamese: "Bốn",
     phonetic: "bohn",
     category: "numbers",
+    subgroup: "basic",
     icon: "hash"
   },
   {
@@ -472,6 +477,43 @@ const PHRASES = [
     vietnamese: "Năm",
     phonetic: "nahm",
     category: "numbers",
+    subgroup: "basic",
+    icon: "hash"
+  },
+  {
+    id: "num-6",
+    english: "Six",
+    vietnamese: "Sáu",
+    phonetic: "sow",
+    category: "numbers",
+    subgroup: "basic",
+    icon: "hash"
+  },
+  {
+    id: "num-7",
+    english: "Seven",
+    vietnamese: "Bảy",
+    phonetic: "by",
+    category: "numbers",
+    subgroup: "basic",
+    icon: "hash"
+  },
+  {
+    id: "num-8",
+    english: "Eight",
+    vietnamese: "Tám",
+    phonetic: "tahm",
+    category: "numbers",
+    subgroup: "basic",
+    icon: "hash"
+  },
+  {
+    id: "num-9",
+    english: "Nine",
+    vietnamese: "Chín",
+    phonetic: "cheen",
+    category: "numbers",
+    subgroup: "basic",
     icon: "hash"
   },
   {
@@ -480,6 +522,79 @@ const PHRASES = [
     vietnamese: "Mười",
     phonetic: "mu-uhy",
     category: "numbers",
+    subgroup: "basic",
+    icon: "hash"
+  },
+  {
+    id: "num-20",
+    english: "Twenty",
+    vietnamese: "Hai mươi",
+    phonetic: "high mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-30",
+    english: "Thirty",
+    vietnamese: "Ba mươi",
+    phonetic: "bah mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-40",
+    english: "Forty",
+    vietnamese: "Bốn mươi",
+    phonetic: "bohn mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-50",
+    english: "Fifty",
+    vietnamese: "Năm mươi",
+    phonetic: "nahm mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-60",
+    english: "Sixty",
+    vietnamese: "Sáu mươi",
+    phonetic: "sow mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-70",
+    english: "Seventy",
+    vietnamese: "Bảy mươi",
+    phonetic: "by mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-80",
+    english: "Eighty",
+    vietnamese: "Tám mươi",
+    phonetic: "tahm mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
+    icon: "hash"
+  },
+  {
+    id: "num-90",
+    english: "Ninety",
+    vietnamese: "Chín mươi",
+    phonetic: "cheen mu-uhy",
+    category: "numbers",
+    subgroup: "tens",
     icon: "hash"
   },
   {
@@ -488,6 +603,7 @@ const PHRASES = [
     vietnamese: "Một trăm",
     phonetic: "moht chahm",
     category: "numbers",
+    subgroup: "large",
     icon: "hash"
   },
   {
@@ -496,6 +612,7 @@ const PHRASES = [
     vietnamese: "Một ngàn",
     phonetic: "moht ngahn",
     category: "numbers",
+    subgroup: "large",
     icon: "hash"
   },
   {
@@ -504,6 +621,7 @@ const PHRASES = [
     vietnamese: "Một triệu",
     phonetic: "moht triew",
     category: "numbers",
+    subgroup: "large",
     icon: "hash"
   },
   {
@@ -511,7 +629,7 @@ const PHRASES = [
     english: "Where is the ATM?",
     vietnamese: "Máy rút tiền (ATM) ở đâu?",
     phonetic: "may zoot tee-en uh daw",
-    category: "numbers",
+    category: "money",
     icon: "credit-card"
   },
   {
@@ -519,7 +637,7 @@ const PHRASES = [
     english: "Credit card",
     vietnamese: "Thẻ tín dụng",
     phonetic: "theh teen zoong",
-    category: "numbers",
+    category: "money",
     icon: "credit-card"
   },
   {
@@ -527,7 +645,7 @@ const PHRASES = [
     english: "Cash",
     vietnamese: "Tiền mặt",
     phonetic: "tee-en maht",
-    category: "numbers",
+    category: "money",
     icon: "banknote"
   }
 ];
@@ -535,6 +653,8 @@ const PHRASES = [
 // Application State
 // ==========================================================================
 let currentFilter = "all";
+let currentNumberSubFilter = "all";
+let explorerNumber = 10;
 let searchQuery = "";
 let playingPhraseId = null;
 let audioInstance = null;
@@ -588,13 +708,30 @@ function renderCategories() {
 }
 
 function renderPhrases() {
+  // Toggle visibility of the Numbers & Money interactive area
+  const numbersSpecialArea = document.getElementById("numbers-special-area");
+  if (numbersSpecialArea) {
+    if (currentFilter === "numbers" && !searchQuery) {
+      numbersSpecialArea.style.display = "block";
+      updateExplorerUI();
+    } else {
+      numbersSpecialArea.style.display = "none";
+    }
+  }
+
   const filteredPhrases = PHRASES.filter(phrase => {
     const matchesCategory = currentFilter === "all" || phrase.category === currentFilter;
+    
+    let matchesSubgroup = true;
+    if (currentFilter === "numbers" && currentNumberSubFilter !== "all") {
+      matchesSubgroup = phrase.subgroup === currentNumberSubFilter;
+    }
+
     const matchesSearch =
       phrase.english.toLowerCase().includes(searchQuery.toLowerCase()) ||
       phrase.vietnamese.toLowerCase().includes(searchQuery.toLowerCase()) ||
       phrase.phonetic.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCategory && matchesSubgroup && matchesSearch;
   });
 
   if (filteredPhrases.length === 0) {
@@ -659,6 +796,13 @@ function setupEventListeners() {
     if (!btn) return;
 
     currentFilter = btn.dataset.category;
+    // Reset sub-filter when switching categories
+    currentNumberSubFilter = "all";
+    document.querySelectorAll(".sub-filter-pill").forEach((pill, idx) => {
+      if (idx === 0) pill.classList.add("active");
+      else pill.classList.remove("active");
+    });
+    
     document.querySelectorAll(".category-tab").forEach(tab => tab.classList.remove("active"));
     btn.classList.add("active");
 
@@ -732,6 +876,85 @@ function setupEventListeners() {
       }
     }
   });
+
+  // Number Sub-filters (Pills)
+  const subNav = document.getElementById("number-sub-nav");
+  if (subNav) {
+    subNav.addEventListener("click", (e) => {
+      const pill = e.target.closest(".sub-filter-pill");
+      if (!pill) return;
+
+      currentNumberSubFilter = pill.dataset.subgroup;
+      document.querySelectorAll(".sub-filter-pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+
+      stopAudio();
+      renderPhrases();
+    });
+  }
+
+  // Number Explorer Slider
+  const numSlider = document.getElementById("num-slider");
+  if (numSlider) {
+    numSlider.addEventListener("input", (e) => {
+      updateExplorerValue(parseInt(e.target.value));
+    });
+  }
+
+  // Number Explorer Input Box
+  const numInput = document.getElementById("num-input");
+  if (numInput) {
+    numInput.addEventListener("change", (e) => {
+      let val = parseInt(e.target.value);
+      if (isNaN(val) || val < 1) val = 1;
+      if (val > 100) val = 100;
+      updateExplorerValue(val);
+    });
+    numInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        numInput.blur();
+      }
+    });
+  }
+
+  // Increment Button
+  const numIncBtn = document.getElementById("num-inc-btn");
+  if (numIncBtn) {
+    numIncBtn.addEventListener("click", () => {
+      if (explorerNumber < 100) {
+        updateExplorerValue(explorerNumber + 1);
+      }
+    });
+  }
+
+  // Decrement Button
+  const numDecBtn = document.getElementById("num-dec-btn");
+  if (numDecBtn) {
+    numDecBtn.addEventListener("click", () => {
+      if (explorerNumber > 1) {
+        updateExplorerValue(explorerNumber - 1);
+      }
+    });
+  }
+
+  // Explorer Play Button
+  const explorerPlayBtn = document.getElementById("explorer-play-btn");
+  if (explorerPlayBtn) {
+    explorerPlayBtn.addEventListener("click", () => {
+      const currentPlayingId = (playingPhraseId && typeof playingPhraseId === 'object') ? playingPhraseId.id : playingPhraseId;
+      if (currentPlayingId === "custom-number") {
+        stopAudio();
+      } else {
+        const numInfo = translateNumber(explorerNumber);
+        playPhraseAudio({
+          id: "custom-number",
+          vietnamese: numInfo.vietnamese,
+          english: numInfo.english,
+          phonetic: numInfo.phonetic
+        });
+      }
+    });
+  }
 }
 
 // ==========================================================================
@@ -739,7 +962,8 @@ function setupEventListeners() {
 // ==========================================================================
 function handlePhraseClick(phraseId) {
   // If clicked the phrase that is currently playing, stop it
-  if (playingPhraseId === phraseId) {
+  const currentPlayingId = (playingPhraseId && typeof playingPhraseId === 'object') ? playingPhraseId.id : playingPhraseId;
+  if (currentPlayingId === phraseId) {
     stopAudio();
   } else {
     // If playing a sequence, break it when a user manually clicks a card
@@ -753,23 +977,27 @@ function handlePhraseClick(phraseId) {
   }
 }
 
-function playPhraseAudio(phraseId, useAlternateGoogle = false) {
+function playPhraseAudio(phraseIdOrObj, useAlternateGoogle = false) {
+  const isObj = typeof phraseIdOrObj === 'object';
+  const phraseId = isObj ? phraseIdOrObj.id : phraseIdOrObj;
+
   // If starting a fresh playback, stop existing playback and set safety timeout
   if (!useAlternateGoogle) {
     stopAudioInternal();
 
     // Clear visual state of the previously playing card, if any
-    if (playingPhraseId && playingPhraseId !== phraseId) {
-      const prevPhrase = PHRASES.find(p => p.id === playingPhraseId);
+    const currentPlayingId = (playingPhraseId && typeof playingPhraseId === 'object') ? playingPhraseId.id : playingPhraseId;
+    if (playingPhraseId && currentPlayingId !== phraseId) {
+      const prevPhrase = (playingPhraseId && typeof playingPhraseId === 'object') ? playingPhraseId : PHRASES.find(p => p.id === playingPhraseId);
       if (prevPhrase) {
         updateVisualPlaybackState(prevPhrase, false);
       }
     }
 
-    const phrase = PHRASES.find(p => p.id === phraseId);
+    const phrase = isObj ? phraseIdOrObj : PHRASES.find(p => p.id === phraseId);
     if (!phrase) return;
 
-    playingPhraseId = phraseId;
+    playingPhraseId = phraseIdOrObj;
     updateVisualPlaybackState(phrase, true);
 
     // Set a failsafe safety timeout (e.g. 6 seconds) to prevent visual lockups if browser speech events fail
@@ -779,7 +1007,7 @@ function playPhraseAudio(phraseId, useAlternateGoogle = false) {
     }, 6000);
   }
 
-  const phrase = PHRASES.find(p => p.id === phraseId);
+  const phrase = isObj ? phraseIdOrObj : PHRASES.find(p => p.id === phraseId);
   if (!phrase) return;
 
   // Replace blanks (___) with a pause-inducing comma for natural speech playback
@@ -802,7 +1030,7 @@ function playPhraseAudio(phraseId, useAlternateGoogle = false) {
   let fallbackTimeout = setTimeout(() => {
     if (!useAlternateGoogle) {
       console.warn("Google TTS tw-ob timeout. Trying alternate gtx endpoint...");
-      playPhraseAudio(phraseId, true);
+      playPhraseAudio(phraseIdOrObj, true);
     } else {
       console.warn("Alternate Google TTS timeout. Falling back to SpeechSynthesis.");
       triggerSpeechSynthesisFallback(speakText);
@@ -821,7 +1049,7 @@ function playPhraseAudio(phraseId, useAlternateGoogle = false) {
     clearTimeout(fallbackTimeout);
     if (!useAlternateGoogle) {
       console.warn("Google TTS tw-ob failed. Trying alternate gtx endpoint...", e);
-      playPhraseAudio(phraseId, true);
+      playPhraseAudio(phraseIdOrObj, true);
     } else {
       console.error("Alternate Google TTS failed. Invoking SpeechSynthesis fallback.", e);
       triggerSpeechSynthesisFallback(speakText);
@@ -833,7 +1061,7 @@ function playPhraseAudio(phraseId, useAlternateGoogle = false) {
     clearTimeout(fallbackTimeout);
     if (!useAlternateGoogle) {
       console.warn("Google TTS tw-ob play catch. Trying alternate gtx endpoint...", err);
-      playPhraseAudio(phraseId, true);
+      playPhraseAudio(phraseIdOrObj, true);
     } else {
       console.warn("Alternate Google TTS play catch. Falling back to SpeechSynthesis.", err);
       triggerSpeechSynthesisFallback(speakText);
@@ -918,7 +1146,7 @@ function stopAudio() {
   playingPhraseId = null;
 
   if (prevPlayingId) {
-    const phrase = PHRASES.find(p => p.id === prevPlayingId);
+    const phrase = (prevPlayingId && typeof prevPlayingId === 'object') ? prevPlayingId : PHRASES.find(p => p.id === prevPlayingId);
     if (phrase) {
       updateVisualPlaybackState(phrase, false);
     }
@@ -964,6 +1192,22 @@ function updateVisualPlaybackState(phrase, isPlaying) {
       }
     }
   });
+
+  // Handle custom number explorer state
+  if (phrase.id === 'custom-number') {
+    const explorerPlayBtn = document.getElementById("explorer-play-btn");
+    if (explorerPlayBtn) {
+      if (isPlaying) {
+        explorerPlayBtn.classList.add("playing");
+        const playIcon = explorerPlayBtn.querySelector("i");
+        if (playIcon) playIcon.setAttribute("data-lucide", "square");
+      } else {
+        explorerPlayBtn.classList.remove("playing");
+        const playIcon = explorerPlayBtn.querySelector("i");
+        if (playIcon) playIcon.setAttribute("data-lucide", "volume-2");
+      }
+    }
+  }
 
   // Re-run lucide icons to display square or volume icon
   lucide.createIcons();
@@ -1012,6 +1256,135 @@ function startPlaySequence() {
   lucide.createIcons();
 
   playPhraseAudio(sequenceQueue[sequenceIndex].id);
+}
+
+// ==========================================================================
+// Number Translator and Interactive Explorer Helpers
+// ==========================================================================
+function translateNumber(n) {
+  if (n === 100) {
+    return {
+      vietnamese: "Một trăm",
+      phonetic: "moht chahm",
+      english: "One hundred"
+    };
+  }
+  
+  const viDigits = ["không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+  const phDigits = ["khom", "moht", "high", "bah", "bohn", "nahm", "sow", "by", "tahm", "cheen"];
+  
+  if (n < 10) {
+    return {
+      vietnamese: viDigits[n].charAt(0).toUpperCase() + viDigits[n].slice(1),
+      phonetic: phDigits[n],
+      english: getEnglishNumberName(n)
+    };
+  }
+  
+  if (n === 10) {
+    return {
+      vietnamese: "Mười",
+      phonetic: "mu-uhy",
+      english: "Ten"
+    };
+  }
+  
+  if (n < 20) {
+    const unit = n % 10;
+    let viUnit = viDigits[unit];
+    let phUnit = phDigits[unit];
+    if (unit === 5) {
+      viUnit = "lăm";
+      phUnit = "lahm";
+    }
+    return {
+      vietnamese: "Mười " + viUnit,
+      phonetic: "mu-uhy " + phUnit,
+      english: getEnglishNumberName(n)
+    };
+  }
+  
+  const tenVal = Math.floor(n / 10);
+  const unitVal = n % 10;
+  
+  let viTen = viDigits[tenVal] + " mươi";
+  let phTen = phDigits[tenVal] + " mu-uhy";
+  
+  let viUnit = "";
+  let phUnit = "";
+  
+  if (unitVal > 0) {
+    if (unitVal === 1) {
+      viUnit = "mốt";
+      phUnit = "moht";
+    } else if (unitVal === 5) {
+      viUnit = "lăm";
+      phUnit = "lahm";
+    } else if (unitVal === 4) {
+      viUnit = "tư";
+      phUnit = "tuh";
+    } else {
+      viUnit = viDigits[unitVal];
+      phUnit = phDigits[unitVal];
+    }
+  }
+  
+  const viText = viTen + (viUnit ? " " + viUnit : "");
+  const phText = phTen + (phUnit ? " " + phUnit : "");
+  
+  return {
+    vietnamese: viText.charAt(0).toUpperCase() + viText.slice(1),
+    phonetic: phText,
+    english: getEnglishNumberName(n)
+  };
+}
+
+function getEnglishNumberName(n) {
+  const ones = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 
+                "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+  const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+  
+  if (n < 20) return ones[n].charAt(0).toUpperCase() + ones[n].slice(1);
+  const tenVal = Math.floor(n / 10);
+  const unitVal = n % 10;
+  const name = tens[tenVal] + (unitVal > 0 ? "-" + ones[unitVal] : "");
+  return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+function updateExplorerValue(val) {
+  explorerNumber = val;
+  updateExplorerUI();
+  
+  const currentPlayingId = (playingPhraseId && typeof playingPhraseId === 'object') ? playingPhraseId.id : playingPhraseId;
+  if (currentPlayingId === "custom-number") {
+    const numInfo = translateNumber(explorerNumber);
+    playPhraseAudio({
+      id: "custom-number",
+      vietnamese: numInfo.vietnamese,
+      english: numInfo.english,
+      phonetic: numInfo.phonetic
+    });
+  }
+}
+
+function updateExplorerUI() {
+  const numInput = document.getElementById("num-input");
+  const numSlider = document.getElementById("num-slider");
+  const explorerDigit = document.getElementById("explorer-digit");
+  const explorerVi = document.getElementById("explorer-vi");
+  const explorerPh = document.getElementById("explorer-ph");
+  const explorerEn = document.getElementById("explorer-en");
+
+  if (!numInput) return;
+
+  numInput.value = explorerNumber;
+  numSlider.value = explorerNumber;
+  explorerDigit.textContent = explorerNumber;
+
+  const numInfo = translateNumber(explorerNumber);
+  explorerVi.textContent = numInfo.vietnamese;
+  explorerPh.textContent = `[ ${numInfo.phonetic} ]`;
+  explorerEn.textContent = numInfo.english;
 }
 
 // Ensure voices are loaded for SpeechSynthesis

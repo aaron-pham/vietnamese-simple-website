@@ -52,6 +52,45 @@
         </nav>
       </section>
 
+      <!-- Interactive Numbers & Money Area -->
+      <div id="numbers-special-area" class="numbers-special-area" style="display: none;">
+        <!-- Number Explorer Widget -->
+        <div class="number-explorer">
+          <div class="explorer-inputs">
+            <h3 class="explorer-title"><i data-lucide="hash"></i> Number Explorer</h3>
+            <p class="explorer-desc">Drag the slider or type a number to see and hear any number up to 100 in Vietnamese.</p>
+            
+            <div class="input-controls">
+              <button class="step-btn" id="num-dec-btn" aria-label="Decrease number">-</button>
+              <input type="number" id="num-input" min="1" max="100" value="10" aria-label="Selected number">
+              <button class="step-btn" id="num-inc-btn" aria-label="Increase number">+</button>
+            </div>
+            
+            <input type="range" id="num-slider" min="1" max="100" value="10" class="custom-slider" aria-label="Select number range">
+          </div>
+          
+          <div class="explorer-display">
+            <div class="display-digit" id="explorer-digit">10</div>
+            <div class="display-content">
+              <h2 class="display-vietnamese" id="explorer-vi">Mười</h2>
+              <p class="display-phonetic" id="explorer-ph">[ mu-uhy ]</p>
+              <p class="display-english" id="explorer-en">Ten</p>
+            </div>
+            <button class="display-play-btn" id="explorer-play-btn" aria-label="Play pronunciation">
+              <i data-lucide="volume-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sub-filters pills -->
+        <div class="number-sub-nav" id="number-sub-nav">
+          <button class="sub-filter-pill active" data-subgroup="all">All Numbers</button>
+          <button class="sub-filter-pill" data-subgroup="basic">Basic (1-10)</button>
+          <button class="sub-filter-pill" data-subgroup="tens">Tens (20-90)</button>
+          <button class="sub-filter-pill" data-subgroup="large">Hundreds & More</button>
+        </div>
+      </div>
+
       <!-- Stats Bar -->
       <div class="stats-bar" id="stats-bar">
         <span id="results-count">Showing all phrases</span>
